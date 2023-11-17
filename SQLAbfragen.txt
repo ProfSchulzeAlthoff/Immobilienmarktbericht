@@ -1,0 +1,32 @@
+#Flächenumsatz 2021 vs 2022 Seite 16
+
+-- Select(
+
+-- (Select sum (flaechenumsatz)
+-- from diehl
+-- where jahrgang='2022'
+--  and gebaudeart='Einfamilienhaus' or gebaudeart='Mehrfamilienhaus'
+-- )
+-- /
+-- (Select sum (flaechenumsatz)
+-- from diehl
+-- where jahrgang='2021'
+--   and gebaudeart='Einfamilienhaus' or gebaudeart='Mehrfamilienhaus'
+-- ))
+# 
+
+Frage an Marburg: Wie wird damit umgegangen, dass die Spalten "willkürlich" gefüllt werden? Welche Angaben zählen zum Beispiel zu EFH und MFH? Muss noch im Einzelfall entschieden werden?
+
+#Fallzahlen Seite 8
+
+Select round((
+
+(Select count (regnr)
+from diehl
+where jahrgang='2022'
+)
+/
+(Select count (regnr)
+from diehl
+where jahrgang='2021'
+)::numeric),2)
