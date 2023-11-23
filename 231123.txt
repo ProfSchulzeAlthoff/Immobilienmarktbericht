@@ -1,0 +1,15 @@
+--Seite 64 Ein- und Zweifamilienhäuser freistehend
+
+Select count (Regnr) 
+	from diehlgekürzt 
+			 where Jahrgang = '2021'
+			 and Gebaudeart='Einfamilienhaus' or gebaudeart='Zweifamilienhaus'
+			 and GebauedeStellung = 'Freistehend / Einzelhaus'
+--Ergebnis:3202 obwohl im Marktbericht 1508			 
+			 
+Select count (Regnr) 
+	from diehlgekürzt 
+			 where Jahrgang = '2022'
+			 and Gebaudeart='Einfamilienhaus' or gebaudeart='Zweifamilienhaus'
+			 and GebauedeStellung = 'Freistehend / Einzelhaus'
+			 --Ergebnis 3108 obwohl 1407
