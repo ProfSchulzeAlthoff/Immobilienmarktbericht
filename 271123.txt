@@ -1,0 +1,117 @@
+#Flächenumsatz
+
+Select(
+1-(
+(Select sum (flaechenumsatz)
+from diehlgekürzt
+where jahrgang='2022'
+and gebaudeart='Einfamilienhaus' or gebaudeart='Zweifamilienhaus'
+)
+/
+(Select sum (flaechenumsatz)
+from diehlgekürzt
+where jahrgang='2021'
+and gebaudeart='Einfamilienhaus' or gebaudeart='Zweifamilienhaus'
+)))*100
+
+#Fallzahlen
+
+Select round(
+
+(Select count (regnr)
+from diehlgekürzt
+where jahrgang='2022'
+and (gebaudeart='Einfamilienhaus' or gebaudeart='Zweifamilienhaus')
+)
+/
+(Select count (regnr)
+from diehlgekürzt
+where jahrgang='2021'
+   and (gebaudeart='Einfamilienhaus' or gebaudeart='Zweifamilienhaus')
+)::numeric,3)
+
+
+
+#mittl. Grundstücksfläche
+
+Select(
+
+(select avg (gesamtflaeche)
+from diehlgekürzt
+where jahrgang='2022'
+and (gebaudeart='Einfamilienhaus' or gebaudeart='Zweifamilienhaus'))
+
+/
+(select avg(gesamtflaeche)
+from diehlgekürzt
+where jahrgang='2021'
+   and (gebaudeart='Einfamilienhaus' or gebaudeart='Zweifamilienhaus')
+))
+
+
+
+#Geldumsatz
+
+Select(
+
+(select sum (vertragspreis)
+from diehlgekürzt
+where jahrgang='2022'
+and (gebaudeart='Einfamilienhaus' or gebaudeart='Zweifamilienhaus'))
+
+/
+(select sum (vertragspreis)
+from diehlgekürzt
+where jahrgang='2021'
+   and (gebaudeart='Einfamilienhaus' or gebaudeart='Zweifamilienhaus')
+))
+
+
+#mittl. Kaufpreis
+
+Select(
+
+(select avg (vertragspreis)
+from diehlgekürzt
+where jahrgang='2022'
+and (gebaudeart='Einfamilienhaus' or gebaudeart='Zweifamilienhaus'))
+
+/
+(select avg (vertragspreis)
+from diehlgekürzt
+where jahrgang='2021'
+   and (gebaudeart='Einfamilienhaus' or gebaudeart='Zweifamilienhaus')
+))
+
+
+
+
+
+
+Seite 8 
+#eigentumsübergang
+
+Select round(
+
+(select count (vorgang)
+from diehlgekürzt
+where jahrgang='2022')
+/
+(select count (vorgang)
+from diehlgekürzt
+where jahrgang='2021')
+::numeric,3)
+
+
+
+#Zwangsversteigerungen
+Select round(
+
+(select count (vorgang)
+from diehlgekürzt
+where jahrgang='2022' and vorgang='Z')
+/
+(select count (vorgang)
+from diehlgekürzt
+where jahrgang='2021' and vorgang='Z')
+::numeric,3)
