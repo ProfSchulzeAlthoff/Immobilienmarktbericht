@@ -1,0 +1,191 @@
+Select(
+1-(
+(Select sum (flaechenumsatz)
+from diehlgekürzt
+where jahrgang='2022'
+ and vorgang = 'K'
+ and anteill = '1/1'
+ and 
+and gebaudeart like 'Einfamilienhaus%' or gebaudeart like 'Zweifamilienhaus%' 
+)
+/
+(Select sum (flaechenumsatz)
+from diehlgekürzt
+where jahrgang='2021'
+and gebaudeart like 'Einfamilienhaus%' or gebaudeart like 'Zweifamilienhaus%'
+)))*100
+
+
+
+
+
+#GRUNDLAGE 2022
+
+drop view grundlage2022
+
+
+Create view grundlage2022 as
+Select *
+from diehlneu2
+where jahrgang='2022'
+ and vorgang = 'K'
+ and anteill = '1/1'
+ and verwand is null
+ 
+
+Select * from grundlage2022
+
+#GRUNDLAGE 2021
+
+drop view grundlage2021
+
+
+Create view grundlage2021 as
+Select *
+from diehlneu2
+where jahrgang='2021'
+ and vorgang = 'K'
+ and anteill = '1/1'
+ and verwand is null
+ 
+
+Select * from grundlage2021
+
+
+
+---Klasse1
+
+Create View Klasse1_2022 as
+Select * from grundlage2022
+where gebaudeart like 'Einfamilienhaus%' and gebauedestellung = 'Freistehend / Einzelhaus' and vertragspreis between 20000 and 1000000 and flaechenumsatz between 200 and 2000
+or gebaudeart like 'Zweifamilienhaus%' and gebauedestellung = 'Freistehend / Einzelhaus' and vertragspreis between 20000 and 1000000 and flaechenumsatz between 200 and 2000
+or gebaudeart = 'Villa' and gebauedestellung = 'Freistehend / Einzelhaus' and vertragspreis between 20000 and 1000000 and flaechenumsatz between 200 and 2000
+or gebaudeart = 'Wohngebäude' and gebauedestellung = 'Freistehend / Einzelhaus' and vertragspreis between 20000 and 1000000 and flaechenumsatz between 200 and 2000
+
+drop view Klasse1
+select * from Klasse1_2022
+
+
+Create View Klasse1_2021 as
+Select * from grundlage2021
+where gebaudeart like 'Einfamilienhaus%' and gebauedestellung = 'Freistehend / Einzelhaus' and vertragspreis between 20000 and 1000000 and flaechenumsatz between 200 and 2000
+or gebaudeart like 'Zweifamilienhaus%' and gebauedestellung = 'Freistehend / Einzelhaus' and vertragspreis between 20000 and 1000000 and flaechenumsatz between 200 and 2000
+or gebaudeart = 'Villa' and gebauedestellung = 'Freistehend / Einzelhaus' and vertragspreis between 20000 and 1000000 and flaechenumsatz between 200 and 2000
+or gebaudeart = 'Wohngebäude' and gebauedestellung = 'Freistehend / Einzelhaus' and vertragspreis between 20000 and 1000000 and flaechenumsatz between 200 and 2000
+
+Select * from Klasse1_2021
+
+
+---Klasse 2
+
+Create View Klasse2_2022 as
+Select * from grundlage2022
+where gebaudeart like 'Einfamilienhaus%' and gebauedestellung = 'Nicht freistehend' and vertragspreis between 20000 and 1000000 and flaechenumsatz between 200 and 1800
+or gebaudeart like 'Zweifamilienhaus%' and gebauedestellung = 'Nicht freistehend' and vertragspreis between 20000 and 1000000 and flaechenumsatz between 200 and 1800
+or gebaudeart = 'Villa' and gebauedestellung = 'Nicht freistehend' and vertragspreis between 20000 and 1000000 and flaechenumsatz between 200 and 1800
+or gebaudeart = 'Wohngebäude' and gebauedestellung = 'Nicht freistehend' and vertragspreis between 20000 and 1000000 and flaechenumsatz between 200 and 1800
+
+drop view Klasse2_2022
+select * from Klasse2_2022
+
+
+
+Create View Klasse2_2021 as
+Select * from grundlage2021
+where gebaudeart like 'Einfamilienhaus%' and gebauedestellung = 'Nicht freistehend' and vertragspreis between 20000 and 1000000 and flaechenumsatz between 200 and 1800
+or gebaudeart like 'Zweifamilienhaus%' and gebauedestellung = 'Nicht freistehend' and vertragspreis between 20000 and 1000000 and flaechenumsatz between 200 and 1800
+or gebaudeart = 'Villa' and gebauedestellung = 'Nicht freistehend' and vertragspreis between 20000 and 1000000 and flaechenumsatz between 200 and 1800
+or gebaudeart = 'Wohngebäude' and gebauedestellung = 'Nicht freistehend' and vertragspreis between 20000 and 1000000 and flaechenumsatz between 200 and 1800
+
+Select * from Klasse2_2021
+
+
+---Klasse3
+
+
+Create View Klasse3_2022 as
+Select * from grundlage2022
+where gebaudeart like 'Einfamilienhaus%' and gebauedestellung = 'Reihenhaus' or gebauedestellung = 'Doppelhaushälfte' and vertragspreis between 20000 and 1000000 and flaechenumsatz between 100 and 1500
+or gebaudeart like 'Zweifamilienhaus%' and gebauedestellung = 'Reihenhaus' or gebauedestellung = 'Doppelhaushälfte' and vertragspreis between 20000 and 1000000 and flaechenumsatz between 100 and 1500
+or gebaudeart = 'Wohngebäude' and gebauedestellung = 'Reihenhaus' or gebauedestellung = 'Doppelhaushälfte' and vertragspreis between 20000 and 1000000 and flaechenumsatz between 100 and 1500
+
+drop view Klasse3_2022
+select * from Klasse3_2022
+
+
+
+Create View Klasse3_2021 as
+Select * from grundlage2021
+where gebaudeart like 'Einfamilienhaus%' and gebauedestellung = 'Reihenhaus' or gebauedestellung = 'Doppelhaushälfte' and vertragspreis between 20000 and 1000000 and flaechenumsatz between 100 and 1500
+or gebaudeart like 'Zweifamilienhaus%' and gebauedestellung = 'Reihenhaus' or gebauedestellung = 'Doppelhaushälfte' and vertragspreis between 20000 and 1000000 and flaechenumsatz between 100 and 1500
+or gebaudeart = 'Wohngebäude' and gebauedestellung = 'Reihenhaus' or gebauedestellung = 'Doppelhaushälfte' and vertragspreis between 20000 and 1000000 and flaechenumsatz between 100 and 1500
+
+select * from Klasse3_2021
+
+
+
+---Klasse4
+
+Create View Klasse4_2022 as
+Select * from grundlage2022
+where gebaudeart like 'Einfamilienhaus%' and gebauedestellung = 'Hofbebauung' and vertragspreis between 20000 and 1000000 and flaechenumsatz between 400 and 2000
+or gebaudeart like 'Zweifamilienhaus%' and gebauedestellung = 'Hofbebauung' and vertragspreis between 20000 and 1000000 and flaechenumsatz between 400 and 2000
+or gebaudeart = 'Wohngebäude' and gebauedestellung = 'Hofbebauung' and vertragspreis between 20000 and 1000000 and flaechenumsatz between 400 and 2000
+
+drop view Klasse3_2022
+select * from Klasse4_2022
+
+select distinct gebauedestellung from diehlneu2
+
+
+Create View Klasse4_2021 as
+Select * from grundlage2021
+where gebaudeart like 'Einfamilienhaus%' and gebauedestellung = 'Hofbebauung' and vertragspreis between 20000 and 1000000 and flaechenumsatz between 400 and 2000
+or gebaudeart like 'Zweifamilienhaus%' and gebauedestellung = 'Hofbebauung' and vertragspreis between 20000 and 1000000 and flaechenumsatz between 400 and 2000
+or gebaudeart = 'Wohngebäude' and gebauedestellung = 'Hofbebauung' and vertragspreis between 20000 and 1000000 and flaechenumsatz between 400 and 2000
+
+drop view Klasse3_2022
+select * from Klasse4_2021
+
+
+
+
+---Berechnung Flächenumsatz---
+
+
+Select (
+(Select sum(
+(Select sum (flaechenumsatz)
+from Klasse1_2022
+)
+	+
+	(Select sum (flaechenumsatz)
+from Klasse2_2022
+)
+	+
+	(Select sum (flaechenumsatz)
+from Klasse3_2022
+)
+	+
+	(Select sum (flaechenumsatz)
+from Klasse4_2022
+)))
+/
+(Select sum(
+(Select sum (flaechenumsatz)
+from Klasse1_2021
+)
+	+
+	(Select sum (flaechenumsatz)
+from Klasse2_2021
+)
+	+
+	(Select sum (flaechenumsatz)
+from Klasse3_2021
+)
+	+
+	(Select sum (flaechenumsatz)
+from Klasse4_2021
+)))-1)
+
+---Ergebnis -6%
