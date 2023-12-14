@@ -1,0 +1,188 @@
+Fallzahlen
+
+Select (
+(Select sum(
+(Select count (regnr)
+from Klasse1_2022
+)
+	+
+	(Select count (regnr)
+from Klasse2_2022
+)
+	+
+	(Select count (regnr)
+from Klasse3_2022
+)
+	+
+	(Select count (regnr)
+from Klasse4_2022
+)))
+/
+(Select sum(
+(Select count (regnr)
+from Klasse1_2021
+)
+	+
+	(Select count (regnr)
+from Klasse2_2021
+)
+	+
+	(Select count (regnr)
+from Klasse3_2021
+)
+	+
+	(Select count (regnr)
+from Klasse4_2021
+)))-1)
+
+--Fallzahlen gesunken um 4% statt Steigung um 7,3%
+
+--mittlere Grundst
+
+Select (
+(Select avg(
+(Select sum (flaechenumsatz)
+from Klasse1_2022
+)
+	+
+	(Select sum (flaechenumsatz)
+from Klasse2_2022
+)
+	+
+	(Select sum (flaechenumsatz)
+from Klasse3_2022
+)
+	+
+	(Select sum (flaechenumsatz)
+from Klasse4_2022
+)))
+/
+(Select avg(
+(Select sum (flaechenumsatz)
+from Klasse1_2021
+)
+	+
+	(Select sum (flaechenumsatz)
+from Klasse2_2021
+)
+	+
+	(Select sum (flaechenumsatz)
+from Klasse3_2021
+)
+	+
+	(Select sum (flaechenumsatz)
+from Klasse4_2021
+)))-1)
+
+-- gesunken um 6% statt -0,7%
+
+
+--Geldumsatz
+Select (
+(Select sum(
+(Select sum (vertragspreis)
+from Klasse1_2022
+)
+	+
+	(Select sum (vertragspreis)
+from Klasse2_2022
+)
+	+
+	(Select sum (vertragspreis)
+from Klasse3_2022
+)
+	+
+	(Select sum (vertragspreis)
+from Klasse4_2022
+)))
+/
+(Select sum(
+(Select sum (vertragspreis)
+from Klasse1_2021
+)
+	+
+	(Select sum (vertragspreis)
+from Klasse2_2021
+)
+	+
+	(Select sum (vertragspreis)
+from Klasse3_2021
+)
+	+
+	(Select sum (vertragspreis)
+from Klasse4_2021
+)))-1)
+--Steigung um 5% statt +19,9%
+
+--mittl Kaufpreis Test
+
+
+Select (
+(Select (
+(Select sum (vertragspreis)
+from Klasse1_2022
+)
+	+
+	(Select sum (vertragspreis)
+from Klasse2_2022
+)
+	+
+	(Select sum (vertragspreis)
+from Klasse3_2022
+)
+	+
+	(Select sum (vertragspreis)
+from Klasse4_2022
+))/((Select sum(
+(Select count (regnr)
+from Klasse1_2022
+)
+	+
+	(Select count (regnr)
+from Klasse2_2022
+)
+	+
+	(Select count (regnr)
+from Klasse3_2022
+)
+	+
+	(Select count (regnr)
+from Klasse4_2022
+)))))
+	
+/
+	
+
+(Select (
+(Select sum (vertragspreis)
+from Klasse1_2021
+)
+	+
+	(Select sum (vertragspreis)
+from Klasse2_2021
+)
+	+
+	(Select sum (vertragspreis)
+from Klasse3_2021
+)
+	+
+	(Select sum (vertragspreis)
+from Klasse4_2021
+))/((Select sum(
+(Select count (regnr)
+from Klasse1_2021
+)
+	+
+	(Select count (regnr)
+from Klasse2_2021
+)
+	+
+	(Select count (regnr)
+from Klasse3_2021
+)
+	+
+	(Select count (regnr)
+from Klasse4_2021
+)))))-1)
+
+-- Anstieg um 9,4% statt 11,4%
